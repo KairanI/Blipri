@@ -1,0 +1,1 @@
+export { TextReducer } from "./model";

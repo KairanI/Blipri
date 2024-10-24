@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: Inter-regular;
+    src: local('Inter-Regular')
+}
+
+@font-face {
+    font-family: Inter-medium;
+    src: local('Inter-Medium')
+}
+
+@font-face {
+    font-family: Inter-bold;
+    src: local('Inter-Bold')
+}
+
+@font-face {
+    font-family: Kadwa-bold;
+    src: local('Kadwa-Bold');
+}
+
+@font-face {
+    font-family: JetBrainsMono-medium;
+    src: local("JetBrainsMono-Medium")
+}
+
+@font-face {
+    font-family: JetBrainsMono-regular;
+    src: local('JetBrainsMono-Regular')
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+body {
+    background: #161616;
+    height: 100vh;
+
+    overflow-x: hidden;
+}
+
+.audio-line::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #FFFFFF;
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+}
+
+.opacityElement {
+    opacity: 0;
+}
+
+.hideTest {
+    opacity: 0;
+}
+
+.showTest {
+    opacity: 1;
+    transition: .3s;
+}
+
+.key {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8F8F8F;
+    background-color: #1C1C1C;
+
+    font-family: Inter-medium;
+    font-size: 14px;
+}
+
+.pop-up {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.07s;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+}
+
+.pop-up-active {
+    opacity: 1;
+    z-index: 10;
+    transition: all 0.07s;
+}
+
+.lang-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #676767 #161616;
+}
+
+.keybord-animate {
+    animation-name: keyAnimate;
+    animation-duration: .2s;
+}
+
+.keybord-error {
+    animation-name: keyError;
+    animation-duration: .2s;
+}
+
+.caretka-blink {
+    animation: AnimateOpacity 1s;
+    animation-iteration-count: infinite;
+}
+
+.text-opacity {
+    animation: AnimateOpacity .3s;
+}
+
+.cursor-delete {  
+    cursor: none;
+}
+
+@keyframes keyAnimate {
+    0%{
+        background: #1C1C1C;
+    }
+    50%{
+        background: #FFD600;
+        color: #1C1C1C;
+    }
+    100%{
+        background: #1C1C1C;
+        color: #8F8F8F;
+    }
+}
+
+@keyframes keyError {
+    0%{
+        background: #1C1C1C;
+    }
+    50%{
+        background: #CA4754;
+        color: #1C1C1C;
+    }
+    100%{
+        background: #1C1C1C;
+        color: #8F8F8F;
+    }
+}
+
+@keyframes AnimateOpacity {
+    0%{
+        opacity: 100%;
+    }
+    50%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+@keyframes AnimateOpacity {
+    0%{
+        opacity: 100%;
+    }
+    50%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}

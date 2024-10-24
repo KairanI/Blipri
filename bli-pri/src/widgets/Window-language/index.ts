@@ -1,0 +1,1 @@
+export { WindowLanguage } from "./ui";

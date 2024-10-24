@@ -1,0 +1,183 @@
+/* sidebar */
+
+.sideBar {
+	@apply w-[906px] justify-center h-[60px] rounded-[15px] bg-block-black shadow-block m-auto flex flex-row px-[15px] text-grey-80 font-inter-regular text-base
+}
+
+.sideBarZen {
+	@apply w-[335px] justify-center h-[60px] rounded-[15px] bg-block-black shadow-block m-auto flex flex-row px-[15px] text-grey-80 font-inter-regular text-base
+}
+
+.sideBarDictation {
+	@apply w-[1097px] justify-center h-[60px] rounded-[15px] m-auto flex flex-row text-grey-80 font-inter-regular text-base
+}
+
+/* containers  */
+
+.containerPunctNumber {
+	@apply w-[288px] flex flex-row duration-[700ms] bg-block-black rounded-[15px]
+}
+
+.containerNumber {
+	@apply flex flex-row duration-[700ms] bg-block-black rounded-[15px]
+}
+
+.containerMode {
+	z-index: 1;
+	@apply flex flex-row bg-block-black rounded-[15px] relative duration-[600ms]
+}
+
+.containerPunctNumberZen {
+	@apply flex flex-row translate-x-[100%] invisible opacity-0 duration-500
+}
+
+.containerNumberZen {
+	@apply flex flex-row translate-x-[-100%] invisible opacity-0 duration-500
+}
+
+.containerPunctNumberDictation {
+	@apply w-[171px] flex flex-row justify-center bg-block-black rounded-[15px] px-[15px] shadow-block duration-[600ms] translate-x-[-120%]
+}
+
+.containerModeDictation {
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] shadow-block duration-[600ms] translate-x-[-52%]
+}
+
+.containerNumberDictation {
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] shadow-block duration-[600ms] translate-x-[110%]
+}
+
+.containerPunctNumberDictationZen {
+	animation: animateShow .6s;
+	@apply w-[171px] flex flex-row justify-center bg-block-black rounded-[15px] px-[15px] shadow-block translate-x-[-120%]
+}
+
+.containerModeDictationZen {
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] shadow-block duration-[400ms] translate-x-[-52%]
+}
+
+.containerNumberDictationZen {
+	animation: animateShow .6s;
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] shadow-block translate-x-[110%]
+}
+
+
+/* settings */
+
+.punctuation {
+	@apply w-[141px] h-[60px] flex-center-center gap-1.5 self-center transition-colors hover:text-white cursor-pointer
+}
+
+.punctuationActive {
+	@apply text-yellow w-[141px] h-[60px] flex-center-center gap-1.5 self-center transition-colors hover:text-white cursor-pointer
+}
+
+
+.number {
+	@apply w-[111px] h-[60px] flex-center-center gap-1.5 self-center hover:text-white cursor-pointer
+}
+
+.numberActive {
+	@apply text-yellow w-[111px] h-[60px] flex-center-center gap-1.5 self-center hover:text-white cursor-pointer
+}
+
+.numberDictation {
+	@apply w-0 h-[60px] flex-center-center gap-1.5 self-center hover:text-white cursor-pointer duration-300 opacity-0 invisible
+}
+
+
+.words {
+	@apply w-[104px] h-[60px] flex-center-center gap-1.5 self-center transition-colors hover:text-white cursor-pointer
+}
+
+.wordsActive {
+	@apply text-yellow w-[104px] h-[60px] flex-center-center gap-1.5 self-center transition-colors hover:text-white cursor-pointer
+}
+
+
+.ten {
+	@apply w-[48px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
+}
+
+.tenActive {
+	@apply text-yellow w-[48px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
+}
+
+.tenDictation {
+	@apply w-[37px] duration-500;
+}
+
+
+.twentyFive {
+	@apply  w-[50px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
+}
+
+.twentyFiveActive {
+	@apply text-yellow w-[50px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
+}
+
+
+.fiftieth {
+	@apply w-[50px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
+}
+
+.fiftiethActive {
+	@apply text-yellow w-[50px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
+}
+
+
+.hundred {
+	@apply w-[58px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
+}
+
+.hundredActive {
+	@apply text-yellow w-[58px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
+}
+
+.allNumberDictation {
+	@apply w-[40px] duration-500;
+}
+
+/* septum */
+
+.septum {
+	@apply w-[6px] h-[35px] mx-[15px] rounded-[3px] bg-black-gray self-center duration-500;
+}
+
+.septumDictation {
+	@apply rounded-[3px] bg-black-gray self-center opacity-0 duration-100;
+}
+
+/* audio player */
+
+.audioPlayer {
+	@apply opacity-0 duration-500
+}
+
+.audioPlayerDictation {
+	animation: animateShow .5s;
+	@apply opacity-100
+}
+
+.audioPlayerDictationZen {
+	animation: animateShow .6s;
+}
+
+.timer {
+	@apply opacity-0 duration-300;
+}
+
+.timerActive {
+	animation: animateShow .5s;
+	@apply opacity-100;
+}
+
+@keyframes animateShow {
+	0% {
+		opacity: 0;
+	} 40% {
+		opacity: 0;
+	} 100% {
+		opacity: 1;
+	}
+}
