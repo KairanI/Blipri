@@ -9,12 +9,13 @@ export let controllerText: IControllerText = {
     deleteText: 0,
     endPoint: 0,
     startPoint: 0,
+    oneStartPoint: 0,
     numWords: 0,
     req: false,
 };
 
 export let transfer: ITransfer = {
-    controller: 0
+    length: 62,
 }
 
 export let controllerInput: IControllerInput = {

@@ -64,88 +64,16 @@
 
 /* settings */
 
-.punctuation {
-	@apply w-[141px] h-[60px] flex-center-center gap-1.5 self-center transition-colors hover:text-white cursor-pointer
-}
-
-.punctuationActive {
-	@apply text-yellow w-[141px] h-[60px] flex-center-center gap-1.5 self-center transition-colors hover:text-white cursor-pointer
-}
-
-
-.number {
-	@apply w-[111px] h-[60px] flex-center-center gap-1.5 self-center hover:text-white cursor-pointer
-}
-
-.numberActive {
-	@apply text-yellow w-[111px] h-[60px] flex-center-center gap-1.5 self-center hover:text-white cursor-pointer
-}
-
 .numberDictation {
 	@apply w-0 h-[60px] flex-center-center gap-1.5 self-center hover:text-white cursor-pointer duration-300 opacity-0 invisible
-}
-
-
-.words {
-	@apply w-[104px] h-[60px] flex-center-center gap-1.5 self-center transition-colors hover:text-white cursor-pointer
-}
-
-.wordsActive {
-	@apply text-yellow w-[104px] h-[60px] flex-center-center gap-1.5 self-center transition-colors hover:text-white cursor-pointer
-}
-
-
-.ten {
-	@apply w-[48px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
-}
-
-.tenActive {
-	@apply text-yellow w-[48px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
 }
 
 .tenDictation {
 	@apply w-[37px] duration-500;
 }
 
-
-.twentyFive {
-	@apply  w-[50px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
-}
-
-.twentyFiveActive {
-	@apply text-yellow w-[50px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
-}
-
-
-.fiftieth {
-	@apply w-[50px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
-}
-
-.fiftiethActive {
-	@apply text-yellow w-[50px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
-}
-
-
-.hundred {
-	@apply w-[58px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
-}
-
-.hundredActive {
-	@apply text-yellow w-[58px] h-[60px] flex-center-center self-center transition-colors hover:text-white cursor-pointer
-}
-
 .allNumberDictation {
 	@apply w-[40px] duration-500;
-}
-
-/* septum */
-
-.septum {
-	@apply w-[6px] h-[35px] mx-[15px] rounded-[3px] bg-black-gray self-center duration-500;
-}
-
-.septumDictation {
-	@apply rounded-[3px] bg-black-gray self-center opacity-0 duration-100;
 }
 
 /* audio player */

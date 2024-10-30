@@ -65,6 +65,7 @@ export interface IControllerText {
     deleteText: number
     endPoint: number
     startPoint: number
+    oneStartPoint: number
     numWords: number
     req: boolean
 }
@@ -81,5 +82,5 @@ export interface IFocusPayload {
 }
 
 export interface ITransfer {
-    controller: number
+    length: number;
 }

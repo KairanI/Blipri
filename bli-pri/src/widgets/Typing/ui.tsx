@@ -1,8 +1,8 @@
 import { FC, useContext, useEffect, useRef } from "react";
-import { useType } from "./model/useType"
 import { words } from "../../shared/lib/constant";
 import { FocusContext } from "../../pages/Test";
 import { TextContext } from "../../pages/Test/model/Context";
+import { useType } from "./model";
 
 export const Typing: FC = () => {
 	const focusSettings = useContext(FocusContext);

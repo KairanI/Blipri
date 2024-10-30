@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useReducer } from "react"
 import { WindowLanguage } from "../../widgets/Window-language"
-import { Typing } from "../../features/typeSymbols"
 import { KeyBoard } from "../../entities/keyboard"
 import '../../index.css'
 import { FocusContext, FocusDispatchContext, TextContext, TextDispatchContext } from "./model/Context"
@@ -13,6 +12,7 @@ import { WindowLength } from "../../widgets/Window-length"
 import { useAnimate } from "../../shared/model/hooks"
 import { SideBar } from "../../widgets/sideBar"
 import { HotKeys } from "../../entities/hotkeys"
+import { Typing } from "../../widgets/Typing"
 
 export const PageTest: FC = () => {
 	const [focusSettings, focusDispatch] = useReducer(FocusReducer, defaultFocusSettings);

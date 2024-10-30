@@ -95,11 +95,10 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 			}
 	
 			else if (mode == 'words') {
-				drift.sideBar = styles.sideBar + ' ' +'duration-500';
+				drift.sideBar = styles.sideBar + ' ' + 'duration-500';
 				drift.containerPunctNumber = styles.containerPunctNumber;
 				drift.containerNumber = styles.containerNumber;
 				drift.containerMode = styles.containerMode;
-				drift.number = 'transition-colors';
 				drift.audioPlayer = styles.audioPlayer;
 				drift.timer = styles.timer;
 				drift.ten = '',
@@ -108,8 +107,16 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 				drift.hundred = ''
 			}
 	
-			if (mode == 'words' || mode == 'zen' && lastMode == 'dictation') drift.number = 'duration-500';
+			if (mode == 'words' || mode == 'zen' && lastMode == 'dictation') drift.number = 'duration-500'
 		})
+
+		if (mode == 'words' || mode == 'zen' && lastMode == 'dictation') {
+			setTimeout(() => {
+				setClassObject(drift => {
+					 drift.number = 'transition-colors'
+				})
+			}, 500)
+		}
 	}
 
 	return [classObject, classEdit]
