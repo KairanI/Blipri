@@ -1,10 +1,5 @@
 // interface and type
 
-export interface ITimer {
-	minute: number;
-	second: number;
-}
-
 interface IControllers {
 	arrow: boolean;
 	inputRange: boolean;
@@ -16,14 +11,9 @@ interface IInterval {
 	timer: number
 }
 
-export type TypeAudioPlayer = ({ className, classTimer }: { className: string, classTimer: string }) => JSX.Element
+export type TypeAudioPlayer = ({ className, isMobile } : { className: string, isMobile: boolean }) => JSX.Element
 
 // constants
-
-export let durationTime: ITimer = {
-	minute: 0,
-	second: 0
-}
 
 export let controllers: IControllers = {
 	arrow: true,

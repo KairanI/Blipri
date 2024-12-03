@@ -1,1 +1,1 @@
-export { ContainerNumber } from "../containerNumber/ui";
+export { ContainerNumber } from "./ui/containerNumber";

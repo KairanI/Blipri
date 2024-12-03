@@ -40,7 +40,7 @@ body {
     background: #161616;
     height: 100vh;
 
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .audio-line::-webkit-slider-thumb {
@@ -49,6 +49,13 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 10px;
+}
+
+@media (max-width: 970px) {
+    .audio-line::-webkit-slider-thumb {
+        width: 12px;
+        height: 12px;
+    }
 }
 
 .opacityElement {
@@ -130,6 +137,11 @@ body {
     cursor: none;
 }
 
+.timerActive {
+	animation: animateTimer .4s;
+	@apply opacity-100;
+}
+
 @keyframes keyAnimate {
     0%{
         background: #1C1C1C;
@@ -170,14 +182,12 @@ body {
     }
 }
 
-@keyframes AnimateOpacity {
-    0%{
-        opacity: 100%;
-    }
-    50%{
-        opacity: 0%;
-    }
-    100%{
-        opacity: 100%;
-    }
+@keyframes animateTimer {
+	0% {
+		opacity: 0;
+	} 40% {
+		opacity: 0;
+	} 100% {
+		opacity: 1;
+	}
 }

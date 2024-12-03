@@ -3,7 +3,7 @@ import { filterLang } from "../model/find"
 import { ListLang } from "./list.lang";
 import { FocusContext } from "../../../pages/Test";
 
-const languageMassiv: string[] = ['russian', 'english', 'french', 'spanish', 'italian', 'japanese', 'chinese', 'polish', 'finnish', 'indian', 'kazakh', 'norwegian', 'swedish', 'greek', 'turkish', 'romanian', 'czech', 'dutch', 'irish', 'portuguese']
+const languageMassiv: string[] = ['russian', 'english', 'french']
 
 export const SearchWindow: FC = () => {
   const [langMassiv, setLangMassiv] = useState<string[]>(languageMassiv)

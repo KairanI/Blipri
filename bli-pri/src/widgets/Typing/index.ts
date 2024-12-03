@@ -1,1 +1,1 @@
-export { Typing } from "./ui";
+export { Typing } from "./ui/Typing";

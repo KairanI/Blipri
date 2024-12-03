@@ -20,6 +20,9 @@ export const TextReducer = (settings: ITextSettings, action: IActionText) => {
 		case 'ModeEdit': {
 			return  { ...settings, mode: action.string };
 		}
+		case 'PageEdit': {
+			return  { ...settings, page: action.string };
+		}
 		default: {
 			return settings
 		}

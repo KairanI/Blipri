@@ -1,0 +1,1 @@
+export { maxTime } from "./mode";

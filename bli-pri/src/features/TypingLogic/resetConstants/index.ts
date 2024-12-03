@@ -1,1 +1,1 @@
-export { resetConstants } from "./mode";
+export { resetConstants } from "./mode/resetConstants";

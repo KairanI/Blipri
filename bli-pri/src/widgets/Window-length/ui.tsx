@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
 import { FocusDispatchContext } from "../../pages/Test";
-import { FocusContext } from "../../pages/Test/model/Context";
+import { FocusContext } from "../../app/model/Context";
 import { EditLength } from "../../features/EditLength";
 import { TypeHandleFocusClik } from "../../shared/Types/types";
 
@@ -19,25 +19,25 @@ export const WindowLength: FC = () => {
 	return (
 		<>
 			{focusSettings?.activeModalLength && (
-				<div id="pop-up-length" className='pop-up' 
-						onClick={() => handleClick('LengthModalEdit', { boolean: false })}
+				<div id="pop-up-length" className='pop-up'
+					onClick={() => handleClick('LengthModalEdit', { boolean: false })}
+					onMouseDown={e => {
+						e.preventDefault();
+					}}
+				>
+					<div className="w-[500px] h-[291px] flex flex-col gap-[20px] bg-pop-up rounded-[20px] px-[45px] py-[40px]"
+						onClick={e => e.stopPropagation()}
 						onMouseDown={e => {
-							e.preventDefault();
+							e.stopPropagation();
 						}}
 					>
-						<div className="w-[500px] h-[291px] flex flex-col gap-[20px] bg-pop-up rounded-[20px] px-[45px] py-[40px]" 
-							onClick={e => e.stopPropagation()}
-							onMouseDown={e => {
-								e.stopPropagation();
-							}}
-						>
-							<EditLength />
-						</div>
+						<EditLength />
+					</div>
 				</div>
 			)}
 		</>
 
-		
+
 	)
 }
 

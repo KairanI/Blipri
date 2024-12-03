@@ -6,7 +6,6 @@ interface IClassObject {
 	containerPunctNumber: string;
 	containerMode: string;
 	audioPlayer: string;
-	timer: string;
 	containerNumber: string;
 	number: string;
 	ten: string;
@@ -22,7 +21,6 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 		containerMode: styles.containerMode,
 		number: 'transition-colors',
 		audioPlayer: styles.audioPlayer,
-		timer: styles.timer,
 		containerNumber: styles.containerNumber,
 		ten: '',
 		twentyFive: '',
@@ -38,7 +36,6 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 				else if (lastMode == 'words') drift.sideBar = 'opacity-0 transition-all' + ' ' + styles.sideBar;
 
 				drift.audioPlayer = 'translate-x-[-55%] transition-all' + ' ' + drift.audioPlayer;
-				drift.timer = ' transition-all translate-x-[84px]' + ' ' + drift.timer;
 			}
 
 			else if (mode == 'antiFocus') {
@@ -47,7 +44,6 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 				else if (lastMode == 'words') drift.sideBar = 'transition-all' + ' ' + styles.sideBar;
 
 				drift.audioPlayer = styles.audioPlayerDictation + ' ' + 'transition-all';
-				drift.timer = styles.timerActive + ' ' + 'transition-all';
 			}
 			
 			else if (mode == 'dictation' && lastMode == 'zen') {
@@ -56,7 +52,6 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 				drift.sideBar = styles.sideBarDictation;
 				drift.number = styles.numberDictation
 				drift.audioPlayer = styles.audioPlayerDictationZen;
-				drift.timer = styles.timerActive;
 				drift.containerNumber = styles.containerNumberDictationZen;
 				drift.ten = styles.tenDictation;
 				drift.twentyFive = styles.allNumberDictation;
@@ -66,32 +61,44 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 	
 			else if (mode == 'zen') {
 				drift.sideBar = styles.sideBarZen + ' ' + 'duration-500';
-				drift.containerPunctNumber = styles.containerPunctNumberZen;
-				drift.containerMode = styles.containerMode;
-				drift.containerNumber = styles.containerNumberZen;
+				drift.containerPunctNumber = lastMode == 'NoAnimate' ? styles.containerPunctNumberZenNoAnimate : styles.containerPunctNumberZen;
+				drift.containerMode = lastMode == 'NoAnimate' ? styles.containerModeNoAnimate : styles.containerMode;
+				drift.containerNumber = lastMode == 'NoAnimate' ? styles.containerNumberZenNoAnimate : styles.containerNumberZen;
 				drift.ten = '',
 				drift.twentyFive = '',
 				drift.fiftieth = '',
 				drift.hundred = ''
 	
-				if (lastMode == 'dictation') {
-					drift.audioPlayer = styles.audioPlayer;
-					drift.timer = styles.timer;
-				}
+				if (lastMode == 'dictation') drift.audioPlayer = styles.audioPlayer;
+				else if (lastMode == 'NoAnimate') drift.audioPlayer = styles.audioPlayerNoAnimate;
+	
 			}
 	
 			else if (mode == 'dictation') {
-				drift.sideBar = styles.sideBarDictation;
-				drift.containerMode = styles.containerModeDictation;
-				drift.containerPunctNumber = styles.containerPunctNumberDictation;
-				drift.containerNumber = styles.containerNumberDictation;
-				drift.number = styles.numberDictation
-				drift.audioPlayer = styles.audioPlayerDictation;
-				drift.timer = styles.timerActive;
-				drift.ten = styles.tenDictation;
-				drift.twentyFive = styles.allNumberDictation;
-				drift.fiftieth = styles.allNumberDictation;
-				drift.hundred = styles.allNumberDictation;
+				if (lastMode == 'NoAnimate') {
+					drift.sideBar = styles.sideBarDictation;
+					drift.containerMode = styles.containerModeDictationNoAnimate;
+					drift.containerPunctNumber = styles.containerPunctNumberDictationNoAnimate;
+					drift.containerNumber = styles.containerNumberDictationNoAnimate;
+					drift.number = styles.numberDictationNoAnimate;
+					drift.audioPlayer = styles.audioPlayerDictation;
+					drift.ten = styles.tenDictationNoAnimate;
+					drift.twentyFive = styles.allNumberDictationNoAnimate;
+					drift.fiftieth = styles.allNumberDictationNoAnimate;
+					drift.hundred = styles.allNumberDictationNoAnimate;
+				} 
+				else {
+					drift.sideBar = styles.sideBarDictation;
+					drift.containerMode = styles.containerModeDictation;
+					drift.containerPunctNumber = styles.containerPunctNumberDictation;
+					drift.containerNumber = styles.containerNumberDictation;
+					drift.number = styles.numberDictation
+					drift.audioPlayer = styles.audioPlayerDictation;
+					drift.ten = styles.tenDictation;
+					drift.twentyFive = styles.allNumberDictation;
+					drift.fiftieth = styles.allNumberDictation;
+					drift.hundred = styles.allNumberDictation;
+				}
 			}
 	
 			else if (mode == 'words') {
@@ -100,7 +107,6 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 				drift.containerNumber = styles.containerNumber;
 				drift.containerMode = styles.containerMode;
 				drift.audioPlayer = styles.audioPlayer;
-				drift.timer = styles.timer;
 				drift.ten = '',
 				drift.twentyFive = '',
 				drift.fiftieth = '',
@@ -114,7 +120,19 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 			setTimeout(() => {
 				setClassObject(drift => {
 					 drift.number = 'transition-colors'
+
 				})
+			}, 400)
+		}
+
+		if (mode == 'dictation') {
+			setTimeout(() => {
+				setClassObject(drift => {
+					drift.ten = styles.ten,
+					drift.twentyFive = styles.allNumber,
+					drift.fiftieth = styles.allNumber,
+					drift.hundred = styles.allNumber
+			 })
 			}, 500)
 		}
 	}

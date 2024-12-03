@@ -6,6 +6,9 @@ export interface IType {
 export interface Iwords {
     finish: number
     end: number
+    letters: number
+    errors: number
+    all: number
 }
 
 export interface ILanguageWords {
@@ -30,6 +33,12 @@ export interface ITextSettings {
     language?: string
     mode?: string 
     restart?: number
+    page?: string
+}
+
+export interface ITimer {
+	minute: number;
+	second: number;
 }
 
 export interface IActionFocus {
@@ -83,4 +92,28 @@ export interface IFocusPayload {
 
 export interface ITransfer {
     length: number;
+}
+
+export interface IContents {
+    dictation: string;
+    path: string;
+}
+
+export interface ITimerTyping {
+    second: number,
+}
+
+export interface IDataChart {
+    second: number;
+    wpm: number;
+    raw: number;
+    errors: {
+        error: number;
+        raw: number;
+    };
+}
+
+export interface IResultTest {
+    wpm: number,
+    acc: number
 }

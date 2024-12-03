@@ -1,11 +1,11 @@
 /* sidebar */
 
 .sideBar {
-	@apply w-[906px] justify-center h-[60px] rounded-[15px] bg-block-black shadow-block m-auto flex flex-row px-[15px] text-grey-80 font-inter-regular text-base
+	@apply w-[906px] justify-center h-[60px] rounded-[15px] bg-block-black shadow-block m-auto flex flex-row px-[15px] max-tOne:px-[10px] text-grey-80 font-inter-regular text-base
 }
 
 .sideBarZen {
-	@apply w-[335px] justify-center h-[60px] rounded-[15px] bg-block-black shadow-block m-auto flex flex-row px-[15px] text-grey-80 font-inter-regular text-base
+	@apply w-[335px] justify-center h-[60px] rounded-[15px] bg-block-black shadow-block m-auto flex flex-row px-[15px] max-tOne:px-[10px] text-grey-80 font-inter-regular text-base
 }
 
 .sideBarDictation {
@@ -36,31 +36,187 @@
 }
 
 .containerPunctNumberDictation {
-	@apply w-[171px] flex flex-row justify-center bg-block-black rounded-[15px] px-[15px] shadow-block duration-[600ms] translate-x-[-120%]
+	@apply w-[171px] flex flex-row justify-center bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block duration-[600ms] translate-x-[-120%]
 }
 
 .containerModeDictation {
-	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] shadow-block duration-[600ms] translate-x-[-52%]
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block duration-[600ms] translate-x-[-52%]
 }
 
 .containerNumberDictation {
-	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] shadow-block duration-[600ms] translate-x-[110%]
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block duration-[600ms] translate-x-[110%]
 }
 
 .containerPunctNumberDictationZen {
 	animation: animateShow .6s;
-	@apply w-[171px] flex flex-row justify-center bg-block-black rounded-[15px] px-[15px] shadow-block translate-x-[-120%]
+	@apply w-[171px] flex flex-row justify-center bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block translate-x-[-120%]
 }
 
 .containerModeDictationZen {
-	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] shadow-block duration-[400ms] translate-x-[-52%]
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block duration-[400ms] translate-x-[-52%]
 }
 
 .containerNumberDictationZen {
 	animation: animateShow .6s;
-	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] shadow-block translate-x-[110%]
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block translate-x-[110%]
 }
 
+/* media */
+
+@media (max-width: 1265px) {
+	.sideBar {
+		max-width: 739px;
+	}
+	.sideBarZen {
+		max-width: 275px;
+	}
+
+	.containerPunctNumber {
+		max-width: 243px;
+	}
+	.containerPunctNumberZen {
+		max-width: 200px;
+	}
+
+	/* dictation */
+	.containerPunctNumberDictation {
+		max-width: 151px;
+		transform: translateX(-165%);
+	}
+	.containerPunctNumberDictationZen {
+		max-width: 151px;
+		transform: translateX(-165%);
+	}
+	.containerPunctNumberDictationNoAnimate {
+		max-width: 151px;
+		transform: translateX(-165%);
+	}
+
+	.containerModeDictation {
+		transform: translateX(-83%);
+	}
+	.containerModeDictationZen {
+		transform: translateX(-83%);
+	}
+	.containerModeDictationNoAnimate {
+		transform: translateX(-83%);
+	}
+
+	.containerNumberDictation {
+		transform: translateX(66%);
+	}
+	.containerNumberDictationZen {
+		transform: translateX(66%);
+	}
+	.containerNumberDictationNoAnimate{
+		transform: translateX(66%);
+	}
+}
+
+@media (max-width: 970px) {
+	.sideBar {
+		max-width: 617px;
+		max-height: 50px;
+		font-size: 14px;
+	}
+	.sideBarZen {
+		max-width: 228px;
+		max-height: 50px;
+		font-size: 14px;
+	}
+	.sideBarDictation {
+		max-width: 228px;
+		max-height: 50px;
+		font-size: 14px;
+	}
+	.containerPunctNumberZen {
+		max-width: 170px;
+	}
+	.containerPunctNumberZenNoAnimate {
+		max-width: 170px;
+	}
+
+	/* dictation */
+	.containerPunctNumberDictation {
+		max-width: 127px;
+		transform: translateX(-105%);
+	}
+	.containerPunctNumberDictationZen {
+		max-width: 127px;
+		transform: translateX(-105%);
+	}
+	.containerPunctNumberDictationNoAnimate {
+		max-width: 127px;
+		transform: translateX(-105%);
+	}
+
+	.containerModeDictation {
+		transform: translateX(-52%);
+	}
+	.containerModeDictationZen {
+		transform: translateX(-52%);
+	}
+	.containerModeDictationNoAnimate {
+		transform: translateX(-52%);
+	}
+
+	.containerNumberDictation {
+		transform: translateX(143%);
+	}
+	.containerNumberDictationZen {
+		transform: translateX(143%);
+	}
+	.containerNumberDictationNoAnimate{
+		transform: translateX(143%);
+	}
+}
+
+/* No Animations  */
+
+.containerModeNoAnimate {
+	z-index: 1;
+	@apply flex flex-row bg-block-black rounded-[15px] relative
+}
+
+.containerPunctNumberZenNoAnimate {
+	@apply flex flex-row translate-x-[100%] invisible opacity-0
+}
+
+.containerNumberZenNoAnimate {
+	@apply flex flex-row translate-x-[-100%] invisible opacity-0
+}
+
+.containerPunctNumberDictationNoAnimate {
+	@apply w-[171px] flex flex-row justify-center bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block translate-x-[-120%]
+}
+
+.containerModeDictationNoAnimate {
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block translate-x-[-52%]
+}
+
+.containerNumberDictationNoAnimate {
+	@apply flex flex-row bg-block-black rounded-[15px] px-[15px] max-tOne:px-[10px] max-tTwo:px-[7.5px] shadow-block translate-x-[110%]
+}
+
+.numberDictationNoAnimate {
+	@apply w-0 h-[60px] flex-center-center gap-1.5 self-center hover:text-white cursor-pointer opacity-0 invisible
+}
+
+.tenDictationNoAnimate {
+	@apply w-[37px];
+}
+
+.allNumberDictationNoAnimate {
+	@apply w-[40px];
+}
+
+.tenNoAnimate {
+	@apply w-[37px];
+}
+
+.allNumberNoAnimate {
+	@apply w-[40px];
+}
 
 /* settings */
 
@@ -76,6 +232,14 @@
 	@apply w-[40px] duration-500;
 }
 
+.ten {
+	@apply w-[37px];
+}
+
+.allNumber {
+	@apply w-[40px];
+}
+
 /* audio player */
 
 .audioPlayer {
@@ -89,15 +253,6 @@
 
 .audioPlayerDictationZen {
 	animation: animateShow .6s;
-}
-
-.timer {
-	@apply opacity-0 duration-300;
-}
-
-.timerActive {
-	animation: animateShow .5s;
-	@apply opacity-100;
 }
 
 @keyframes animateShow {

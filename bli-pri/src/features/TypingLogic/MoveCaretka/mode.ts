@@ -1,5 +1,7 @@
 import { controllerText, transfer } from "../../../shared/lib/constant";
 
+let controllerCaretka = true;
+
 export const MoveCaretka = (mode: string | undefined, position: number) => {
 	const caretka: HTMLElement | null = document.getElementById('caretka');
 
@@ -21,6 +23,7 @@ export const MoveCaretka = (mode: string | undefined, position: number) => {
       if (caretka) {
         const сoordinats = document.getElementById(`${position - 1}`)?.getBoundingClientRect();
         if (сoordinats) {
+          controllerCaretka = true;
           caretka.style.left = `${сoordinats.left + 20}px`;
           caretka.style.top = `${сoordinats.top + 34}px`;
 
@@ -30,12 +33,18 @@ export const MoveCaretka = (mode: string | undefined, position: number) => {
                 controllerText.endPoint = position;
               }
             }
+  
             else if (controllerText.deleteText > 0) {
               if (position - controllerText.startPoint - 1 == transfer.length) {
                 controllerText.req = true;
                 controllerText.endPoint = position;
               }
             }
+        } 
+        else if (controllerCaretka) {
+          const left: number = parseFloat(caretka.style.left);
+          caretka.style.left = `${left - 20}px`;
+          controllerCaretka = false;
         }
       }
     }

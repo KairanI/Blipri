@@ -1,1 +1,1 @@
-export { AudioPlayer } from "./ui";
+export { AudioPlayer } from "./ui/AudioPlayer";
