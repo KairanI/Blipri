@@ -1,14 +1,15 @@
-import { useContext } from "react"
-import { TextContext } from "../../../../app/model/Context"
-import { TypeSvgComponent } from "../../../../shared/Types/types";
+import { FC, useContext } from "react"
+import { AdaptiveContext, TextContext } from "../../../../app/model/Context"
 
-export const SvgZen: TypeSvgComponent = ({ isMobile }) => {
+export const SvgZen: FC = () => {
 	const textSettings = useContext(TextContext);
+	const adaptiveSettings = useContext(AdaptiveContext);
+	
 	return (
 		<>
-			{isMobile ? (
+			{adaptiveSettings?.isPad ? (
 					<svg className="mt-[2px]" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none">
-						<path className={textSettings?.mode == 'zen' ? 'svg-active group-hover:svg-pointer transition-colors' : 'group-hover:svg-pointer transition-colors'} fill="#797979" fill-opacity=".8" d="M11.789 4.845 7.297 7.447a.6.6 0 0 1-.595 0L2.211 4.845c-.321-.186-.403-.624-.158-.898.17-.193.362-.35.566-.46l3.162-1.75c.676-.38 1.773-.38 2.45 0l3.161 1.75c.205.11.397.273.566.46.233.274.152.712-.169.898M6.667 8.532v3.978a.59.59 0 0 1-.845.543c-1.202-.59-3.226-1.692-3.226-1.692C1.884 10.96 1.3 9.944 1.3 9.11V6.1a.59.59 0 0 1 .88-.525l4.195 2.433c.175.11.291.31.291.525M7.333 8.532v3.978c0 .444.449.735.845.543 1.202-.59 3.226-1.692 3.226-1.692.712-.402 1.295-1.417 1.295-2.252V6.1a.59.59 0 0 0-.88-.525L7.623 8.007a.63.63 0 0 0-.291.525" />
+						<path className={textSettings?.mode == 'zen' ? 'svg-active group-hover:svg-pointer transition-colors' : 'group-hover:svg-pointer transition-colors'} fill="#797979" fillOpacity=".8" d="M11.789 4.845 7.297 7.447a.6.6 0 0 1-.595 0L2.211 4.845c-.321-.186-.403-.624-.158-.898.17-.193.362-.35.566-.46l3.162-1.75c.676-.38 1.773-.38 2.45 0l3.161 1.75c.205.11.397.273.566.46.233.274.152.712-.169.898M6.667 8.532v3.978a.59.59 0 0 1-.845.543c-1.202-.59-3.226-1.692-3.226-1.692C1.884 10.96 1.3 9.944 1.3 9.11V6.1a.59.59 0 0 1 .88-.525l4.195 2.433c.175.11.291.31.291.525M7.333 8.532v3.978c0 .444.449.735.845.543 1.202-.59 3.226-1.692 3.226-1.692.712-.402 1.295-1.417 1.295-2.252V6.1a.59.59 0 0 0-.88-.525L7.623 8.007a.63.63 0 0 0-.291.525" />
 					</svg>
 				) : (
 					<svg width="17" height="17" fill="none" xmlns="http://www.w3.org/2000/svg">

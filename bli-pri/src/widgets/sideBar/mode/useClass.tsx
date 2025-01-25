@@ -69,36 +69,20 @@ export const useClass: () => [IClassObject, (mode: string, lastMode: string) => 
 				drift.fiftieth = '',
 				drift.hundred = ''
 	
-				if (lastMode == 'dictation') drift.audioPlayer = styles.audioPlayer;
-				else if (lastMode == 'NoAnimate') drift.audioPlayer = styles.audioPlayerNoAnimate;
-	
+				if (lastMode == 'dictation') drift.audioPlayer = styles.audioPlayer;	
 			}
 	
 			else if (mode == 'dictation') {
-				if (lastMode == 'NoAnimate') {
-					drift.sideBar = styles.sideBarDictation;
-					drift.containerMode = styles.containerModeDictationNoAnimate;
-					drift.containerPunctNumber = styles.containerPunctNumberDictationNoAnimate;
-					drift.containerNumber = styles.containerNumberDictationNoAnimate;
-					drift.number = styles.numberDictationNoAnimate;
-					drift.audioPlayer = styles.audioPlayerDictation;
-					drift.ten = styles.tenDictationNoAnimate;
-					drift.twentyFive = styles.allNumberDictationNoAnimate;
-					drift.fiftieth = styles.allNumberDictationNoAnimate;
-					drift.hundred = styles.allNumberDictationNoAnimate;
-				} 
-				else {
-					drift.sideBar = styles.sideBarDictation;
-					drift.containerMode = styles.containerModeDictation;
-					drift.containerPunctNumber = styles.containerPunctNumberDictation;
-					drift.containerNumber = styles.containerNumberDictation;
-					drift.number = styles.numberDictation
-					drift.audioPlayer = styles.audioPlayerDictation;
-					drift.ten = styles.tenDictation;
-					drift.twentyFive = styles.allNumberDictation;
-					drift.fiftieth = styles.allNumberDictation;
-					drift.hundred = styles.allNumberDictation;
-				}
+				drift.sideBar = styles.sideBarDictation;
+				drift.containerMode = lastMode == 'NoAnimate' ? styles.containerModeDictation : styles.containerModeDictation + ' duration-[600ms]';
+				drift.containerPunctNumber = lastMode == 'NoAnimate' ? styles.containerPunctNumberDictation : styles.containerPunctNumberDictation + ' duration-[600ms]';  
+				drift.containerNumber = lastMode == 'NoAnimate' ? styles.containerNumberDictation : styles.containerNumberDictation + ' duration-[600ms]';
+				drift.number = styles.numberDictation
+				drift.audioPlayer = styles.audioPlayerDictation;
+				drift.ten = styles.tenDictation;
+				drift.twentyFive = styles.allNumberDictation;
+				drift.fiftieth = styles.allNumberDictation;
+				drift.hundred = styles.allNumberDictation;
 			}
 	
 			else if (mode == 'words') {

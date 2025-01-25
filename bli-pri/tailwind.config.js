@@ -8,6 +8,7 @@ export default {
   theme: {
     colors: {
       'yellow': '#FFD600',
+      'yellow-button': '#FFCC00',
       'white': '#FFFFFF',
       'red': '#CA4754',
       'black-red': '#932E38',
@@ -18,6 +19,7 @@ export default {
       'hover-pop-up': '#DDDDDD',
       'pop-up': '#161616',
       'grey-80': 'rgb(143 143 143 / 80%)',
+      'opacity-color': 'rgb(143 143 143 / 0%)',
       'black-gray': '#292929',
       'block-black': '#1C1C1C',
       'black': '#000000',
@@ -25,12 +27,12 @@ export default {
       'hotKeys-black': '#121212',
     },
     fontFamily: {
-      'inter-regular': 'Inter-Regular',
-      'inter-bold': 'Inter-Bold',
-      'inter-medium': 'Inter-Medium',
-      'kadwa-bold': 'Kadwa-Bold',
-      'jetBrainsMono-regular': 'JetBrainsMono-Regular',
-      'jetBrainsMono-medium': 'JetBrainsMono-Medium',
+      'inter-regular': ['Inter-Regular', 'sans-serif'],
+      'inter-bold': ['Inter-Bold', 'sans-serif'],
+      'inter-medium': ['Inter-Medium', 'sans-serif'],
+      'kadwa-bold': ['Kadwa-Bold', 'serif'],
+      'jetBrainsMono-regular': ['JetBrainsMono-Regular', 'monospace'],
+      'jetBrainsMono-medium': ['JetBrainsMono-Medium', 'monospace'],
     },
     fontSize: {
       mm: '13px',
@@ -43,9 +45,15 @@ export default {
       '5xl': '3.052rem',
     },
     screens: {
-      'tOne': '1265px',
-      'tTwo': '970px',
-      'tThree': '760px',
+      'tOne': '1266px',
+      'tTwo': '971px',
+      'tThree': '761px',
+      'rOne': '1340px',
+      'rTwo': '1170px',
+      'rThree': '910px',
+      'rFour': '760px',
+      'rFive': '610px',
+      'rSix': '500px',
     },
     extend: {},
   },
@@ -74,7 +82,6 @@ export default {
         '.outline-input': { 
           outline: '2px solid #FFFFFF',
         },
-        
       })
     })
   ],

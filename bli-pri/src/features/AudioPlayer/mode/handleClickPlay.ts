@@ -1,15 +1,7 @@
 import { updateRange } from "../../../shared/model/UpdateRange";
-import { controllers, interval, ITimer } from "../lib/constants";
-import { Updater } from "use-immer";
+import { controllers, interval, TypeHandleClickPlay } from "../lib/constants";
 
-type typeHandleClickPlay = ({ range, audio, setPlay } : {
-	range: HTMLInputElement | null,
-	audio: HTMLAudioElement | null,
-	setPlay: React.Dispatch<React.SetStateAction<boolean>>,
-	setTimer: Updater<ITimer>
-}) => void;
-
-export const handleClickPlay: typeHandleClickPlay = ({ range, audio, setPlay, setTimer }) => {
+export const handleClickPlay: TypeHandleClickPlay = ({ range, audio, setPlay, setTimer }) => {
 	audio?.play();
 	controllers.stop = true;
 

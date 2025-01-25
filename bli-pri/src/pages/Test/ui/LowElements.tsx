@@ -1,17 +1,18 @@
 import { FC, useContext } from "react";
 import { KeyBoard } from "../../../entities/MoreInfoBlock/keyboard";
 import { useAnimate } from "../../../shared/model/hooks";
-import { TextContext, TextDispatchContext } from "../../../app/model/Context";
+import { AdaptiveContext, TextContext, TextDispatchContext } from "../../../app/model/Context";
 
 export const LowElements: FC = () => {
 	const textDispatch = useContext(TextDispatchContext);
+	const adaptiveSettings = useContext(AdaptiveContext);
 	const textSettings = useContext(TextContext);
 	const [isAnimating, startAnimate] = useAnimate();
 
 	return (
-		<div className="max-w-[1184px] h-[350px] bg-pop-up">
-			<KeyBoard />
-			<div className='mt-[30px] max-w-[50px] h-[50px] m-auto flex-center-center group cursor-pointer'
+		<div className={`bg-pop-up relative ${adaptiveSettings?.isMobile ? 'h-[287px] pt-[20px]' : ''}`}>
+			{!adaptiveSettings?.isMobile && <KeyBoard />}
+			<div className={`max-w-[50px] h-[50px] m-auto flex-center-center group cursor-pointer ${adaptiveSettings?.isMobile ? 'mt-[0px]' : 'mt-[30px]'}`}
 				onClick={() => {
 					if (!isAnimating) {
 						if (textSettings?.mode == "dictation") startAnimate(false, true);

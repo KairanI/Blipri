@@ -1,21 +1,21 @@
 import { updateRange } from "../../../shared/model/UpdateRange";
 import { controllers } from "../lib/constants";
 
-type typeArrowDown = ({ e, range, audio } : {
-	e: KeyboardEvent,
+type TypeArrowDown = ({ stateArrow, range, audio } : {
+	stateArrow: string,
 	range: HTMLInputElement | null,
 	audio: HTMLAudioElement | null
 }) => void;
 
-export const arrowDown: typeArrowDown = ({ e, range, audio }) => {
-	if (e.key == 'ArrowLeft' && range && audio) {
+export const arrowDown: TypeArrowDown = ({ stateArrow, range, audio }) => {
+	if (stateArrow == 'ArrowLeft' && range && audio) {
 		audio.pause();
 		audio.currentTime -= 5
 		controllers.arrow = false;
 
 		if (controllers.inputRange) updateRange(range, audio);
 	}
-	else if (e.key == 'ArrowRight' && range && audio) {
+	else if (stateArrow == 'ArrowRight' && range && audio) {
 		audio.pause();
 		audio.currentTime += 5
 		controllers.arrow = false;

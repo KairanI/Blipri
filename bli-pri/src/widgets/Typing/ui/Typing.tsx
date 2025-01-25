@@ -1,11 +1,12 @@
 import { FC, useContext, useEffect, useRef } from "react";
 import { FocusContext } from "../../../pages/Test";
 import { useType } from "../model/useType";
-import { WordsCount } from "./WordsCount";
+import { WordsCount } from "../../../entities/WordsCount";
 
 export const Typing: FC = () => {
 	const focusSettings = useContext(FocusContext);
 	const caretkaRef = useRef<HTMLDivElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [type] = useType();
 
 	useEffect(() => {
@@ -18,21 +19,26 @@ export const Typing: FC = () => {
 	}, [])
 
 	useEffect(() => {
-		if (focusSettings && focusSettings.activeCaretka == true) caretkaRef.current?.classList.add('caretka-blink')
+		if (focusSettings && focusSettings.activeCaretka == true) caretkaRef.current?.classList.add('caretka-blink');
 		return (() => caretkaRef.current?.classList.remove('caretka-blink'))
 	}, [focusSettings]);
 
 	return (
 		<>
-			<div id="test-text" className='font-jetBrainsMono-medium tracking-[2px] leading-[43px] text-grey text-[28px] w-[1184px] max-tTwo:max-w-[560px] max-tOne:max-w-[851px]  h-[132px] m-auto mt-[15px] flex flex-col select-none'>
+			<div
+				id="test-text"
+				className='font-jetBrainsMono-medium tracking-[2px] leading-[43px] text-grey text-[28px] w-[1184px] max-tThree:w-[80vw] max-tTwo:w-[600px] max-tOne:w-[851px] max-h-[132px] pt-[10px] m-auto flex flex-col select-none relative'
+				onClick={() => inputRef.current?.focus()}
+			>
+				<input ref={inputRef} className="absolute z-1 selection:bg-opacity-color cursor-default w-[0px]" />
 				<WordsCount />
-				<div>
+				<div className="h-[132px] overflow-clip break-words relative z-[4]">
 					{Array.isArray(type) && type.map((types, index) => (
 						<span className={types.color} key={types.content + index} id={String(index)}>{types.content}</span>
 					))}
 				</div>
+				<div id="caretka" ref={caretkaRef} className="w-[16px] h-[3px] left-[0px] top-[10px] mt-[37px] transition-all rounded-[12px] bg-white absolute"></div>
 			</div>
-			<div id="caretka" ref={caretkaRef} className="w-[16px] h-[3px] left-[368px] top-[387px] transition-all rounded-[12px] bg-white absolute"></div>
 		</>
 	)
 }

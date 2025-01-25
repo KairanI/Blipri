@@ -10,7 +10,9 @@ import { zenType } from "../../../features/TypingLogic/zenType";
 import { dictationType } from "../../../features/TypingLogic/dictationType";
 import { MoveCaretka } from "../../../features/TypingLogic/MoveCaretka";
 import { useTimer } from "./useTimer";
-import { calculationWPM } from "./calculationWPM";
+import { useResize } from "./useResize";
+import { objectResizeConst } from "../lib/config";
+import { calculationWPM } from "../../../features/calculationWPM";
 
 export const useType: () => (number | IType[])[] = () => {
   const focusSettings = useContext(FocusContext);
@@ -20,14 +22,16 @@ export const useType: () => (number | IType[])[] = () => {
   const [position, setPosition] = useState<number>(0);
   const [type, setType] = useImmer<IType[]>([]);
   useTimer({ focusSettings });
-
+  useResize({ setType, setPosition });
+  
   useEffect(() => {
+    objectResizeConst.mode = textSettings?.mode as string;
     if (focusDispatch) focusDispatch({ type: 'TestEdit', boolean: false });
     resetConstants({ setType, setPosition, textSettings });
   }, [textSettings])
 
   useEffect(() => {
-
+    objectResizeConst.positionText = position;
     MoveCaretka(textSettings?.mode, position);
 
     const handleKey = (e: KeyboardEvent): void => {

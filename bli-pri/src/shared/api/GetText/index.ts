@@ -1,1 +1,0 @@
-export { GetText } from "./GetText.api";

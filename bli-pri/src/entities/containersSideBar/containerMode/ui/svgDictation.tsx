@@ -1,14 +1,15 @@
-import { useContext } from "react"
-import { TextContext } from "../../../../app/model/Context"
-import { TypeSvgComponent } from "../../../../shared/Types/types";
+import { FC, useContext } from "react"
+import { AdaptiveContext, TextContext } from "../../../../app/model/Context"
 
-export const SvgDictation: TypeSvgComponent = ({ isMobile }) => {
+export const SvgDictation: FC = () => {
 	const textSettings = useContext(TextContext);
+	const adaptiveSettings = useContext(AdaptiveContext);
+	
 	return (
 		<>
-			{isMobile ? (
+			{adaptiveSettings?.isPad ? (
 				<svg className="mt-[2px]" xmlns="http://www.w3.org/2000/svg" width="17" height="13" fill="none">
-					<path className={textSettings?.mode == 'dictation' ? 'svg-active group-hover:svg-pointer transition-colors' : 'group-hover:svg-pointer transition-colors'} fill="#797979" fill-opacity=".8" d="M1.828 9.17c-.486 0-.889-.36-.889-.796V3.821c0-.435.403-.796.89-.796.485 0 .888.36.888.796v4.553c0 .446-.403.796-.889.796M5.384 10.688c-.486 0-.89-.361-.89-.796V2.314c0-.435.404-.796.89-.796.485 0 .888.36.888.796v7.578c0 .446-.403.796-.888.796M8.939 12.206c-.486 0-.889-.361-.889-.796V.796C8.05.361 8.453 0 8.94 0s.889.36.889.796V11.41c0 .435-.403.796-.89.796M12.495 10.688c-.486 0-.889-.361-.889-.796V2.314c0-.435.403-.796.889-.796s.889.36.889.796v7.578c0 .446-.403.796-.89.796M16.05 9.17c-.485 0-.888-.36-.888-.796V3.821c0-.435.403-.796.888-.796.486 0 .89.36.89.796v4.553c0 .446-.404.796-.89.796" />
+					<path className={textSettings?.mode == 'dictation' ? 'svg-active group-hover:svg-pointer transition-colors' : 'group-hover:svg-pointer transition-colors'} fill="#797979" fillOpacity=".8" d="M1.828 9.17c-.486 0-.889-.36-.889-.796V3.821c0-.435.403-.796.89-.796.485 0 .888.36.888.796v4.553c0 .446-.403.796-.889.796M5.384 10.688c-.486 0-.89-.361-.89-.796V2.314c0-.435.404-.796.89-.796.485 0 .888.36.888.796v7.578c0 .446-.403.796-.888.796M8.939 12.206c-.486 0-.889-.361-.889-.796V.796C8.05.361 8.453 0 8.94 0s.889.36.889.796V11.41c0 .435-.403.796-.89.796M12.495 10.688c-.486 0-.889-.361-.889-.796V2.314c0-.435.403-.796.889-.796s.889.36.889.796v7.578c0 .446-.403.796-.89.796M16.05 9.17c-.485 0-.888-.36-.888-.796V3.821c0-.435.403-.796.888-.796.486 0 .89.36.89.796v4.553c0 .446-.404.796-.89.796" />
 				</svg>
 			) : (
 				<svg width="19" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">

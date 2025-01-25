@@ -1,7 +1,7 @@
 import { Updater } from "use-immer"
 import { IType } from "../../../shared/Types/interface"
 import { Dispatch, SetStateAction } from "react";
-import { ban_keys, controllerText, errorLetters, words } from "../../../shared/lib/constant";
+import { ban_keys, controllerText, errorLetters, transfer, words } from "../../../shared/lib/constant";
 import { AnimateKey } from "../../../shared/model/AnimateKey";
 
 type TypeZenType = ({ setType, position, setPosition, key, code } : {
@@ -14,7 +14,6 @@ type TypeZenType = ({ setType, position, setPosition, key, code } : {
 
 
 export const zenType: TypeZenType = ({setType, position, setPosition, key, code }) => {
-
 	if (words.finish > words.end) {
 		setType(drift => {
 			if (key == 'Backspace' && position != 0) {
@@ -37,7 +36,6 @@ export const zenType: TypeZenType = ({setType, position, setPosition, key, code 
 				if (key == ' ' && drift[position - 1].content == ' ') return
 				if (key == ' ') {
 					if (controllerText.deleteText == 0) controllerText.startPoint = position;
-					else if (controllerText.deleteText == 1) controllerText.oneStartPoint = position - controllerText.startPoint;
 	
 					words.finish += 1;
 					errorLetters.push(0)
@@ -48,14 +46,24 @@ export const zenType: TypeZenType = ({setType, position, setPosition, key, code 
 					controllerText.deleteText += 1;
 					controllerText.req = false;
 				}
-				if (controllerText.deleteText == 2) setTimeout(() => controllerText.startPoint = controllerText.oneStartPoint, 50)
+
+				if (controllerText.findSpace) {
+						for (let i = 1; i < transfer.length; i++) {
+							if (drift[position - i].content == ' ') {
+								controllerText.startPoint = position - i;
+								i = transfer.length;
+							}
+							else if (i == transfer.length - 1) controllerText.startPoint = transfer.length;
+						}
+						controllerText.findSpace = false;
+				}
 	
 				words.all += 1;
 				words.letters += 1;
 				setPosition(pos => pos + 1)
 				AnimateKey('keybord-animate', code)
 			}
-	
+			
 			if (controllerText.deleteText == 2) {
 				if (drift[controllerText.startPoint].content == ' ') {
 					drift.splice(0, controllerText.startPoint + 1);
@@ -66,7 +74,7 @@ export const zenType: TypeZenType = ({setType, position, setPosition, key, code 
 					drift.splice(0, controllerText.startPoint);
 					setPosition(pos => pos - controllerText.startPoint);
 				}
-				
+				controllerText.findSpace = true;
 				controllerText.deleteText = 1;
 			}
 		})

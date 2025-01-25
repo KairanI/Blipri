@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { dataChart, timerTyping, words } from "../../../shared/lib/constant";
 import { IfocusSettings } from "../../../shared/Types/interface";
-import { calculationWPM } from "./calculationWPM";
+import { calculationWPM } from "../../../features/calculationWPM";
 
 export const useTimer = ({ focusSettings } : { focusSettings: IfocusSettings | null}) => {
 	const lastFrameTimeRef = useRef<number | null>(null);

@@ -12,9 +12,9 @@ export let controllerText: IControllerText = {
     deleteText: 0,
     endPoint: 0,
     startPoint: 0,
-    oneStartPoint: 0,
     numWords: 0,
     req: false,
+    findSpace: false,
 };
 
 export let resultTest: IResultTest = {
@@ -75,5 +75,6 @@ export let durationTime: ITimer = {
 	second: 0
 }
 
+export const massivLength: number[] = [10, 25, 50, 100];
 
 export const ban_keys: string[] = ['Backspace', 'Alt', 'Tab', 'Enter', 'Control', 'Shift', 'CapsLock', 'Meta', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'NumLock', 'Home', 'Clear', 'Insert', 'Delete', 'End', 'PageUp', 'PageDown', 'ScrollLock', 'Pause', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'Escape', 'LaunchApplication1', 'LaunchMail', 'MediaPlayPause', 'AudioVolumeUp', 'AudioVolumeDown', 'AudioVolumeMute'];

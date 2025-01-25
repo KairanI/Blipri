@@ -3,6 +3,7 @@ import { dataChart } from "../../../shared/lib/constant";
 
 export const chartOptions: ChartOptions<"line"> = {
 	maintainAspectRatio: false,
+	responsive: true,
 	plugins: {
 		legend: {
 			display: false,
@@ -74,6 +75,9 @@ export const chartOptions: ChartOptions<"line"> = {
 			},
 			ticks: {
 				padding: 10,
+				font: {
+					size: 14,
+				}
 			}
 		},
 		y: {
@@ -86,7 +90,10 @@ export const chartOptions: ChartOptions<"line"> = {
 				stepSize: 20,
 				maxTicksLimit: 5,
 				padding: 10,
+				font: {
+					size: 14,
+				}
 			}
 		}
-	}	
+	}
 }

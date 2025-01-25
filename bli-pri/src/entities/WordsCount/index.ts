@@ -1,0 +1,1 @@
+export { WordsCount } from "./ui";

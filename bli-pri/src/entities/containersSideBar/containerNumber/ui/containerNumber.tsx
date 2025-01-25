@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { FocusDispatchContext, TextContext } from "../../../../app/model/Context";
 import { controllerInput } from "../../../../shared/lib/constant";
-import { TypeContainerNumber } from "../lib/config";
+import { TypeContainerNumber } from "../lib/types";
 import { SvgButton } from "./svgButton";
 
-export const ContainerNumber: TypeContainerNumber = ({ classObject, isMobile, handleClick }) => {
+export const ContainerNumber: TypeContainerNumber = ({ classObject, handleClick }) => {
 	const textSettings = useContext(TextContext);
 	const dispatchFocus = useContext(FocusDispatchContext);
 
@@ -53,7 +53,7 @@ export const ContainerNumber: TypeContainerNumber = ({ classObject, isMobile, ha
 					controllerInput.type = true;
 				}}
 			>
-				<SvgButton isMobile={isMobile} />
+				<SvgButton />
 			</div>
 		</div>
 	)

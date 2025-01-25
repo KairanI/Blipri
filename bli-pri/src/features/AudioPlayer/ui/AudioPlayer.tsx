@@ -1,34 +1,33 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { FocusDispatchContext, TextContext } from "../../../app/model/Context";
+import { AdaptiveContext, FocusDispatchContext, TextContext } from "../../../app/model/Context";
 import { useImmer } from "use-immer";
 import { controllers, interval, TypeAudioPlayer } from "../lib/constants";
 import { arrowDown } from "../mode/arrowDown";
 import { arrowUp } from "../mode/arrowUp";
 import { handleClickPlay } from "../mode/handleClickPlay";
-import { AudioLine } from "./AudioLine";
-import { AudioInput } from "./AudioInput";
-import { SvgPlayButton } from "./svgPlayButton";
+import { AudioLine } from "./AudioComponents/AudioLine";
+import { AudioInput } from "./AudioComponents/AudioInput";
 import { ITimer } from "../../../shared/Types/interface";
+import { PlayStopButton } from "./AudioComponents/PlayStopButton";
 
-let idTimeout: number = 0;
-
-export const AudioPlayer: TypeAudioPlayer = ({ className, isMobile }) => {
+export const AudioPlayer: TypeAudioPlayer = ({ className }) => {
 	const textSettings = useContext(TextContext);
+	const adaptiveSettings = useContext(AdaptiveContext);
 	const dispatchFocus = useContext(FocusDispatchContext);
 	const [play, setPlay] = useState<boolean>(false);
-	const [timer, setTimer] = useImmer<ITimer>({ minute: 0, second: 0 })
+	const [timer, setTimer] = useImmer<ITimer>({ minute: 0, second: 0 });
 	const inputAudioRef = useRef<HTMLInputElement>(null);
 	const audioRef = useRef<HTMLAudioElement>(null);
 
 	useEffect(() => {
 		const timerCurrect: HTMLElement | null = document.getElementById('timerCurrect');
 		const currectText: string = `0${timer.minute}:${timer.second > 9 ? timer.second : '0' + timer.second}`;
-		if (timerCurrect) timerCurrect.textContent = currectText; 
+		if (timerCurrect) timerCurrect.textContent = currectText;
 	}, [timer])
 
 	useEffect(() => {
 		const handleKey = (e: KeyboardEvent) => {
-			arrowDown({ e, range: inputAudioRef.current, audio: audioRef.current });
+			arrowDown({ stateArrow: e.key, range: inputAudioRef.current, audio: audioRef.current });
 
 			if (e.shiftKey && e.key == ' ') {
 				if (!play && dispatchFocus) {
@@ -39,7 +38,7 @@ export const AudioPlayer: TypeAudioPlayer = ({ className, isMobile }) => {
 					}
 					setPlay(true);
 					dispatchFocus({ type: 'TestEdit', boolean: true });
-					idTimeout = setTimeout(() => handleClickPlay({ range: inputAudioRef.current, audio: audioRef.current, setPlay, setTimer }), 2000);
+					interval.timeout = setTimeout(() => handleClickPlay({ range: inputAudioRef.current, audio: audioRef.current, setPlay, setTimer }), 2000);
 				}
 
 				else if (play) {
@@ -48,7 +47,7 @@ export const AudioPlayer: TypeAudioPlayer = ({ className, isMobile }) => {
 					controllers.stop = false;
 					clearInterval(interval.audio);
 					clearInterval(interval.timer);
-					clearTimeout(idTimeout);
+					clearTimeout(interval.timeout);
 				}
 			}
 		}
@@ -92,45 +91,50 @@ export const AudioPlayer: TypeAudioPlayer = ({ className, isMobile }) => {
 		return (() => {
 			clearInterval(interval.audio);
 			clearInterval(interval.timer);
-			clearTimeout(idTimeout);
+			clearTimeout(interval.timeout);
 			audioInput?.removeEventListener('input', updateRange);
 		})
 	}, [textSettings?.mode])
 
 	return (
 		<>
-			<div className={'w-[319px] max-tOne:max-w-[268px] max-tTwo:max-w-[221px] max-tTwo:max-h-[50px] pr-[15px] pl-[5px] h-[60px] rounded-[15px] bg-block-black shadow-block flex flex-row flex-center-center absolute left-[50.9vw] max-tOne:left-[52.5vw] max-tTwo:left-[53vw]' + ' ' + className}>
-				{play ? (
-					<div
-						className='flex-center-center flex-row w-[47px] h-[47px] gap-[5px] max-tTwo:gap-[4px] cursor-pointer'
-						onClick={() => {
-							audioRef.current?.pause();
-							setPlay(false);
-							controllers.stop = false;
-							clearInterval(interval.audio);
-							clearInterval(interval.timer);
-							clearTimeout(idTimeout);
-						}}
-					>
-						<div className="w-[3px] h-[15px] max-tTwo:max-w-[2px] max-tTwo:max-h-3 bg-white"></div>
-						<div className="w-[3px] h-[15px] max-tTwo:max-w-[2px] max-tTwo:max-h-3 bg-white"></div>
+			{adaptiveSettings?.isMobile ? (
+				<div className="w-[211px] h-[52px] flex flex-col m-auto">
+					<AudioInput inputAudioRef={inputAudioRef} audio={audioRef.current} setPlay={() => setPlay(false)} />
+					<AudioLine audioRef={audioRef} setPlay={() => setPlay(false)} />
+					<div className="flex-center-center gap-[15px] w-[95px] h-[24px] ml-[47px] mt-[18px]">
+						<svg
+							className="cursor-pointer" 
+							onClick={() => {
+								arrowDown({ stateArrow: 'ArrowLeft', range: inputAudioRef.current, audio: audioRef.current })
+								if (audioRef.current) audioRef.current.play();
+							}}
+							xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+						>
+							<mask id="a" width="20" height="20" x="0" y="0" maskUnits="userSpaceOnUse"><path fill="#D9D9D9" d="M0 0h20v20H0z"/></mask>
+							<g mask="url(#a)"><path fill="#fff" d="M4.52 15.667V4.333h2.626v11.334zm9.646 0L8.5 10l5.666-5.667L16 6.167 12.166 10 16 13.833z"/></g>
+						</svg>
+						<PlayStopButton play={play} range={inputAudioRef.current} audio={audioRef.current} setPlay={setPlay} setTimer={setTimer} />
+						<svg 
+							className="cursor-pointer" 
+							onClick={() => {
+								arrowDown({ stateArrow: 'ArrowRight', range: inputAudioRef.current, audio: audioRef.current });
+								if (audioRef.current) audioRef.current.play();
+							}}
+							xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none"
+						>
+							<mask id="a" width="21" height="20" x="0" y="0" maskUnits="userSpaceOnUse"><path fill="#D9D9D9" d="M20.667 0h-20v20h20z"/></mask>
+							<g mask="url(#a)"><path fill="#fff" d="M16.147 15.667V4.333h-2.625v11.334zm-9.646 0L12.167 10 6.501 4.333 4.667 6.167 8.501 10l-3.834 3.833z"/></g>
+						</svg>
 					</div>
-				) : (
-					<div
-						className="flex-center-center w-[47px] h-[47px] cursor-pointer"
-						onClick={() => {
-							setPlay(true);
-							handleClickPlay({ range: inputAudioRef.current, audio: audioRef.current, setPlay, setTimer })
-						}
-						}
-					> 
-						<SvgPlayButton isMobile={isMobile} />
-					</div>
-				)}
-
-				<AudioInput inputAudioRef={inputAudioRef} audio={audioRef.current} setPlay={() => setPlay(false)} />
-				<AudioLine audioRef={audioRef} setPlay={() => setPlay(false)} />
-			</div>
+				</div>
+			) : (
+				<div className={'w-[319px] max-tOne:max-w-[268px] max-tTwo:max-w-[221px] max-tTwo:max-h-[50px] pr-[15px] pl-[5px] h-[60px] rounded-[15px] bg-block-black shadow-block flex flex-row flex-center-center absolute left-[50.9vw] max-tOne:left-[52.5vw] max-tTwo:left-[53vw]' + ' ' + className}>
+					<PlayStopButton play={play} range={inputAudioRef.current} audio={audioRef.current} setPlay={setPlay} setTimer={setTimer} />
+					<AudioInput inputAudioRef={inputAudioRef} audio={audioRef.current} setPlay={() => setPlay(false)} />
+					<AudioLine audioRef={audioRef} setPlay={() => setPlay(false)} />
+				</div>
+			)}
 		</>
 	)
 }

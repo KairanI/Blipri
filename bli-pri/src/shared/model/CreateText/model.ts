@@ -53,8 +53,7 @@ export const createText = (textSettings: ITextSettings, lengthText: number, gene
 
 
 	const firstWord: string = sentenceMassiv[0];
-	if (generalController) sentenceMassiv[0] = firstWord[0].toUpperCase() + firstWord.slice(1);
-	else sentenceMassiv.unshift(' ');
+	if (generalController && textSettings.punctuation) sentenceMassiv[0] = firstWord[0].toUpperCase() + firstWord.slice(1);
 
 	sentence = sentenceMassiv.join('');
 

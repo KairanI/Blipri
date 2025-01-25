@@ -23,6 +23,7 @@ export interface IfocusSettings {
     activeTest: boolean
     activeModalSearch: boolean
 	activeModalLength: boolean
+    activeModalSideBar: boolean
     activeCaretka: boolean
 }
 
@@ -74,9 +75,9 @@ export interface IControllerText {
     deleteText: number
     endPoint: number
     startPoint: number
-    oneStartPoint: number
     numWords: number
     req: boolean
+    findSpace: boolean
 }
 
 export interface IPayload {
@@ -114,6 +115,16 @@ export interface IDataChart {
 }
 
 export interface IResultTest {
-    wpm: number,
-    acc: number
+    wpm: number;
+    acc: number;
+}
+
+export interface IAdaptiveSettings {
+    isPad: boolean;
+    isMobile: boolean;
+}
+
+export interface IActionAdaptive {
+    type: string
+    boolean: boolean
 }

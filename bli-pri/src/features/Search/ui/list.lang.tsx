@@ -10,7 +10,7 @@ export const ListLang: FC<ListLangProps> = ({ massiv }) => {
   const textSettings = useContext(TextContext)
   const dispatchFocus = useContext(FocusDispatchContext)
   const dispatchText = useContext(TextDispatchContext)
-  const [isAnimate, startAnimate] = useAnimate();
+  const [, startAnimate] = useAnimate();
 
   const handleClick = (language: string): void => {
     if (dispatchFocus) {
@@ -30,7 +30,7 @@ export const ListLang: FC<ListLangProps> = ({ massiv }) => {
     <>
       <ol className="overflow-y-scroll lang-scroll">
         {massiv.map((language, idx) => (
-          <li key={idx} className="w-[620px] h-[40px] group cursor-pointer text-base flex items-center text-black-grey hover:bg-hover-pop-up hover:text-black" onClick={() => handleClick(language)}>
+          <li key={idx} className="h-[40px] group cursor-pointer text-base flex items-center text-black-grey hover:bg-hover-pop-up hover:text-black" onClick={() => handleClick(language)}>
             <div key={idx} className={textSettings?.language == language ? "ml-[20px] font-inter-regular flex flex-row gap-[10px]" : "ml-[50px] font-inter-regular"}>
               {textSettings?.language == language && (
                 <svg className="mt-[2px]" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

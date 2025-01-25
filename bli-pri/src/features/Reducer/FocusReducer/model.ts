@@ -5,6 +5,9 @@ export const FocusReducer = (settings: IfocusSettings, action: IActionFocus): If
 		case 'SearchModalEdit': {
 			return { ...settings, activeModalSearch: action.boolean };
 		}
+		case 'SideBarModalEdit': {
+			return { ...settings, activeModalSideBar: action.boolean };
+		}
 		case 'LengthModalEdit': {
 			return { ...settings, activeModalLength: action.boolean };
 		}

@@ -71,10 +71,7 @@ export const createChart = () => {
 			options: chartOptions
 		});
 
-		if (chart.canvas.parentNode) {
-			(chart.canvas.parentNode as HTMLElement).style.height = '266px';
-			(chart.canvas.parentNode as HTMLElement).style.width = '1017px';
-		}
+		
 
 		return () => {
 			chart.destroy();

@@ -1,6 +1,6 @@
 import { createText } from "../../../../shared/model/CreateText";
 import { IType } from "../../../../shared/Types/interface";
-import { contents, controllerText, errorLetters, timerTyping, words } from "../../../../shared/lib/constant";
+import { contents, controllerText, dataChart, errorLetters, timerTyping, words } from "../../../../shared/lib/constant";
 import textsData from "../../../../shared/lib/texts.json";
 import { deletePunctuation } from "./deletePunctuation";
 import { maxTime } from "../../../../shared/model/MaxTime";
@@ -30,26 +30,26 @@ export const resetConstants: TypeResetConstants = ({ setType, setPosition, textS
 
 			if (textSettings.lengthText == 10) {
 				contents.dictation = texts[1][numberText - 1]
-				contents.path = `../../../src/assets/audio/1Audio/1.${numberText}.mp3`
+				contents.path = `/Blipri/audio/1Audio/1.${numberText}.mp3`
 			}
 			else if (textSettings.lengthText == 25) {
 				contents.dictation = texts[2][numberText - 1]
-				contents.path = `../../../src/assets/audio/2Audio/2.${numberText}.mp3`
+				contents.path = `/Blipri/audio/2Audio/2.${numberText}.mp3`
 			}
 			else if (textSettings.lengthText == 50) {
 				contents.dictation = texts[3][numberText - 1]
-				contents.path = `../../../src/assets/audio/3Audio/3.${numberText}.mp3`
+				contents.path = `/Blipri/audio/3Audio/3.${numberText}.mp3`
 			}
 			else if (textSettings.lengthText == 100) {
 				contents.dictation = texts[4][numberText - 1]
-				contents.path = `../../../src/assets/audio/4Audio/4.${numberText}.mp3`
+				contents.path = `/Blipri/audio/4Audio/4.${numberText}.mp3`
 			}
 			maxTime();
 			if (!textSettings.punctuation) contents.dictation = deletePunctuation();
 			words.end = contents.dictation.split(' ').length + 1;
 		}
 
-	
+		dataChart.length = 0;
 		words.errors = 0;
 		words.all = 0;
 		words.letters = 0;
@@ -57,11 +57,10 @@ export const resetConstants: TypeResetConstants = ({ setType, setPosition, textS
 		errorLetters.length = 0;
 		controllerText.deleteText = 0;
 		controllerText.endPoint = 0;
-		controllerText.oneStartPoint = 0;
 		if (textSettings.lengthText != 0) controllerText.numWords = textSettings.lengthText - 30;
 		else controllerText.numWords = 10;
 		controllerText.req = false;
-		controllerText.oneStartPoint = 0;
+		controllerText.findSpace = false;
 		controllerText.startPoint = 0;
 		timerTyping.second = 0;
 		errorLetters.push(0)
@@ -69,6 +68,7 @@ export const resetConstants: TypeResetConstants = ({ setType, setPosition, textS
 
 		setType(drift => {
 			drift.length = 0;
+
 			if (textSettings.mode == 'words') {
 				for (let a = 0; a < content.length; a++) {
 					drift.push(content[a]);

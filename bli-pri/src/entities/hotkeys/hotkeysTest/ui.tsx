@@ -5,7 +5,7 @@ export const HotKeysTest: FC = () => {
 	const textSettings = useContext(TextContext);
 
 	return (
-		<div className={textSettings?.mode == 'dictation' ? 'w-[290px] h-[66px] m-auto text-hotKeys font-inter-medium flex flex-col gap-[20px] text-mm mt-[10px] opacity-100 transition-all' : 'w-[290px] h-[66px] m-auto text-hotKeys font-inter-medium flex flex-col gap-[20px] text-mm mt-[10px] opacity-0 transition-all'}>
+		<div className={textSettings?.mode == 'dictation' ? 'w-[290px] h-[66px] m-auto text-hotKeys font-inter-medium flex flex-col gap-[20px] text-mm opacity-100 transition-all' : 'w-[290px] h-[66px] m-auto text-hotKeys font-inter-medium flex flex-col gap-[20px] text-mm opacity-0 transition-all'}>
 
 			<div className="flex-center-center gap-[10px] m-auto">
 				<div className="w-[41px] h-[23px] bg-hotKeys rounded-[4px] text-hotKeys-black flex-center-center">

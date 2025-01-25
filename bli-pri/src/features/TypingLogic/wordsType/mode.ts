@@ -4,7 +4,8 @@ import { Dispatch, SetStateAction } from "react";
 import { ban_keys, controllerText, dataChart, errorLetters, words } from "../../../shared/lib/constant";
 import { createText } from "../../../shared/model/CreateText";
 import { AnimateKey } from "../../../shared/model/AnimateKey";
-import { calculationWPM } from "../../../widgets/Typing/model/calculationWPM";
+import { calculationWPM } from "../../calculationWPM";
+
 type TypeWordsType = ({type, setType, position, setPosition, key, code, textSettings} : {
 		type: IType[], 
 		setType: Updater<IType[]>, 
@@ -58,7 +59,7 @@ export const wordsType: TypeWordsType = ({type, setType, position, setPosition, 
 				drift.splice(position, 0, { content: key, color: 'text-black-red' });
 				AnimateKey('keybord-error', code)
 
-				const [wpm, raw]: [number, number] = calculationWPM('wpm');
+				const [, raw]: [number, number] = calculationWPM('wpm');
 				if (dataChart.length != 0) {
 					dataChart[dataChart.length - 1].errors.error += 1;
 					dataChart[dataChart.length - 1].errors.raw += raw;
@@ -73,7 +74,7 @@ export const wordsType: TypeWordsType = ({type, setType, position, setPosition, 
 			else if (key != drift[position].content && ban_keys.includes(key) == false && type.length + 1 > position) {
 				drift[position].color = 'text-red';
 
-				const [wpm, raw]: [number, number] = calculationWPM('wpm');
+				const [, raw]: [number, number] = calculationWPM('wpm');
 				if (dataChart.length != 0) {
 					dataChart[dataChart.length - 1].errors.error += 1;
 					dataChart[dataChart.length - 1].errors.raw += raw;
