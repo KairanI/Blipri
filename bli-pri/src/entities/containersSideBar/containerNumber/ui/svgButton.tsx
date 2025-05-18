@@ -1,10 +1,11 @@
-import { FC, useContext } from "react"
-import { AdaptiveContext, TextContext } from "../../../../app/model/Context"
+import { FC } from "react"
 import { massivLength } from "../../../../shared/lib/constant";
+import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
 
 export const SvgButton: FC = () => {
-	const textSettings = useContext(TextContext);
-	const adaptiveSettings = useContext(AdaptiveContext);
+	const textSettings = useAppSelector(state => state.textSettings);
+	const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);
+
 	return (
 		<>
 			{adaptiveSettings?.isPad ? (

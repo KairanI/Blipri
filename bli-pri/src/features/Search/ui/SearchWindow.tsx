@@ -1,14 +1,14 @@
-import { FC, useContext, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { filterLang } from "../model/find"
 import { ListLang } from "./list.lang";
-import { FocusContext } from "../../../pages/Test";
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 
 const languageMassiv: string[] = ['russian', 'english', 'french']
 
 export const SearchWindow: FC = () => {
   const [langMassiv, setLangMassiv] = useState<string[]>(languageMassiv)
   const [searchText, setSearchText] = useState<string>('')
-  const focusSettings = useContext(FocusContext)
+  const focusSettings = useAppSelector(state => state.focusSettings);
   const refInput: React.MutableRefObject<HTMLInputElement | null> = useRef(null);
 
   if (!focusSettings?.activeModalSearch && searchText != '') setTimeout(() => setSearchText(''), 100)

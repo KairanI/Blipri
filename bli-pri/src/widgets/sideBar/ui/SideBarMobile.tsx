@@ -1,26 +1,25 @@
-import { useContext } from "react";
 import { TypeHandleFocusClik, TypeSideBarMobileComponent } from "../../../shared/Types/types";
-import { FocusContext, FocusDispatchContext } from "../../../pages/Test";
 import { SideBarWindow } from "../../../entities/sideBarMobile";
-import { TextContext } from "../../../app/model/Context";
 import { AudioPlayer } from "../../../features/AudioPlayer";
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
+import { useActions } from '../../../shared/hooks/useActions'
 
 export const SideBarMobile: TypeSideBarMobileComponent = ({ handleClick, className }) => {
-	const textSettings = useContext(TextContext);
-	const focusSettings = useContext(FocusContext);
-	const dispatchFocus = useContext(FocusDispatchContext);
+	const textSettings = useAppSelector(state => state.textSettings);
+	const focusSettings = useAppSelector(state => state.focusSettings);
+	const { editSideBarModal } = useActions();
 
 	const handlePopUp: TypeHandleFocusClik = (type, payload) => {
-		if (dispatchFocus && payload.boolean) {
-			dispatchFocus({ type, ...payload })
+		if (payload.boolean) {
+			editSideBarModal(payload.boolean)
 			setTimeout(() => {
 				const popUp = document.getElementById('pop-up-sideBarMobile');
 				popUp?.classList.add('pop-up-active');
 			}, 10)
-		} else if (dispatchFocus && !payload.boolean) {
+		} else if (!payload.boolean) {
 			const popUp = document.getElementById('pop-up');
 			popUp?.classList.remove('pop-up-active');
-			setTimeout(() => dispatchFocus({ type, ...payload }), 70)
+			setTimeout(() => 	editSideBarModal(payload.boolean), 70)
 		}
 	}
 

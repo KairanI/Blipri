@@ -1,21 +1,20 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { ButtonNextTest } from "../../entities/ButtonNextTest";
 import { HotKeysResult } from "../../entities/hotkeys/hotkeysResult";
 import { MoreInformationBlock } from "../../entities/MoreInfoBlock";
 import { WpmAccBlock } from "../../entities/WPM&ACC";
 import { ChartWidget } from "../../widgets/Chart";
-import { AdaptiveContext, AdaptiveDispatchContext } from "../../app/model/Context";
+import { useAppSelector } from '../../shared/hooks/useAppSelector'
+import { useActions } from '../../shared/hooks/useActions'
 
 export const PageResult = () => {
-  const adaptiveSettings = useContext(AdaptiveContext);
-  const adaptiveDispatch = useContext(AdaptiveDispatchContext);
+  const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);
+  const { editIsMobile, editIsPad } = useActions();
 
   useEffect(() => {
     const handleResize = () => {
-      if (adaptiveDispatch) {
-				adaptiveDispatch({type: 'IsPadEdit', boolean: window.innerWidth <= 970})
-      	adaptiveDispatch({type: 'IsMobileEdit', boolean: window.innerWidth <= 760})
-			}
+      editIsPad(window.innerWidth <= 970)
+      editIsMobile(window.innerWidth <= 760)
     }
 
     window.addEventListener("resize", handleResize);

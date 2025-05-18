@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { FocusDispatchContext, TextContext } from "../../../../app/model/Context";
 import { controllerInput } from "../../../../shared/lib/constant";
 import { TypeContainerNumber } from "../lib/types";
 import { SvgButton } from "./svgButton";
+import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
+import { useActions } from '../../../../shared/hooks/useActions'
 
 export const ContainerNumber: TypeContainerNumber = ({ classObject, handleClick }) => {
-	const textSettings = useContext(TextContext);
-	const dispatchFocus = useContext(FocusDispatchContext);
+	const textSettings = useAppSelector(state => state.textSettings);
+	const { editLengthModal } = useActions();
 
 	return (
 		<div className={classObject.container}>
@@ -45,7 +45,7 @@ export const ContainerNumber: TypeContainerNumber = ({ classObject, handleClick 
 			>{textSettings?.mode == "dictation" ? '4' : '100'}</div>
 			<div className={`h-[100%] flex-center-center group cursor-pointer ${textSettings?.mode == 'dictation' ? 'w-0 duration-300 opacity-0 invisible' : 'w-[49px] max-tOne:max-w-[31.5px] max-tTwo:max-w-[29.5px] duration-500'}`}
 				onClick={() => {
-					if (dispatchFocus) dispatchFocus({ type: 'LengthModalEdit', boolean: true })
+					editLengthModal(true)
 					setTimeout(() => {
 						const popUp = document.getElementById('pop-up-length');
 						popUp?.classList.add('pop-up-active');

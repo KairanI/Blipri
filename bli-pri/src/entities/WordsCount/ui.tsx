@@ -1,11 +1,11 @@
-import { FC, useContext } from "react";
-import { AdaptiveContext, FocusContext, TextContext } from "../../app/model/Context";
+import { FC } from "react";
 import { words } from "../../shared/lib/constant";
+import { useAppSelector } from '../../shared/hooks/useAppSelector'
 
 export const WordsCount: FC = () => {
-	const focusSettings = useContext(FocusContext);
-	const textSettings = useContext(TextContext);
-	const adaptiveSettings = useContext(AdaptiveContext);
+	const focusSettings = useAppSelector(state => state.focusSettings);
+	const textSettings = useAppSelector(state => state.textSettings);
+	const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);
 
 	return (
 		<div id="wordsCount" className={`flex absolute bottom-[130px] ${adaptiveSettings?.isMobile ? 'text-[24px] gap-[10px]' : 'text-[32px] gap-[15px]'}`}>

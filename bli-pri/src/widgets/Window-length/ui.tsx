@@ -1,28 +1,25 @@
-import { FC, useContext } from "react";
-import { FocusDispatchContext } from "../../pages/Test";
-import { AdaptiveContext, FocusContext } from "../../app/model/Context";
+import { FC } from "react";
 import { EditLength } from "../../features/EditLength";
 import { TypeHandleFocusClik } from "../../shared/Types/types";
+import { useAppSelector } from '../../shared/hooks/useAppSelector'
+import { useActions } from '../../shared/hooks/useActions'
 
 export const WindowLength: FC = () => {
-	const dispatchFocus = useContext(FocusDispatchContext);
-	const focusSettings = useContext(FocusContext);
-	const adaptiveSettings = useContext(AdaptiveContext);
+	const { editSideBarModal, editLengthModal } = useActions();
+	const focusSettings = useAppSelector(state => state.focusSettings);
+	const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);
 
 	const handleClick: TypeHandleFocusClik = (type, payload) => {
-		if (dispatchFocus) {
 			const popUp = document.getElementById('pop-up-length');
 			popUp?.classList.remove('pop-up-active');
-			setTimeout(() => dispatchFocus({ type, ...payload }), 100);
+			setTimeout(() => editLengthModal(payload.boolean), 100);
 
 			if (adaptiveSettings?.isMobile && !payload.boolean) {
-				console.log("Hello");
-				dispatchFocus({type: 'SideBarModalEdit', boolean: true});
+				editSideBarModal(true)
 				setTimeout(() => {
 					const popUpSideBarMobile = document.getElementById('pop-up-sideBarMobile');
 					popUpSideBarMobile?.classList.add('pop-up-active');
 			}, 10)
-		}
 		}
 	}
 

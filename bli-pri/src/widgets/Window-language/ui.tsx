@@ -1,26 +1,26 @@
-import { FC, useContext } from "react"
+import { FC } from "react"
 import '../../index.css'
 import { SearchWindow } from "../../features/Search";
-import { FocusDispatchContext } from "../../pages/Test";
-import { FocusContext, TextContext } from "../../app/model/Context";
 import { TypeHandleFocusClik } from "../../shared/Types/types";
+import { useAppSelector } from '../../shared/hooks/useAppSelector'
+import { useActions } from '../../shared/hooks/useActions'
 
 export const WindowLanguage: FC = () => {
-    const focusSettings = useContext(FocusContext);
-    const textSettings = useContext(TextContext);
-    const dispatchFocus = useContext(FocusDispatchContext);
+	const focusSettings = useAppSelector(state => state.focusSettings);
+    const textSettings = useAppSelector(state => state.textSettings);
+    const { editSearchModal } = useActions();
 
     const handleClick: TypeHandleFocusClik = (type, payload) => {
-        if (dispatchFocus && payload.boolean) {
-            dispatchFocus({ type, ...payload })
+        if (payload.boolean) {
+            editSearchModal(payload.boolean)
             setTimeout(() => {
                 const popUp = document.getElementById('pop-up');
                 popUp?.classList.add('pop-up-active');
             }, 10)
-        } else if (dispatchFocus && !payload.boolean) {
+        } else if (!payload.boolean) {
             const popUp = document.getElementById('pop-up');
             popUp?.classList.remove('pop-up-active');
-            setTimeout(() => dispatchFocus({ type, ...payload }), 70);
+            setTimeout(() => editSearchModal(payload.boolean), 70);
     }
     }
 

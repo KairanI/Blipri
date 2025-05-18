@@ -1,9 +1,9 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { timerTyping, words } from "../../shared/lib/constant";
-import { TextContext } from "../../app/model/Context";
+import { useAppSelector } from '../../shared/hooks/useAppSelector'
 
 export const MoreInformationBlock: FC = () => {
-  const textSettings = useContext(TextContext);
+  const textSettings = useAppSelector(state => state.textSettings);
 
 	return (
     <>

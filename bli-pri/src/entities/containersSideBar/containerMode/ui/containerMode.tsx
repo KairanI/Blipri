@@ -1,13 +1,13 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement } from "react";
 import { TypeHandleClik } from "../../../../shared/Types/types";
-import { TextContext } from "../../../../app/model/Context";
 import { SvgDictation } from "./svgDictation";
 import { SvgZen } from "./svgZen";
+import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
 
 type TypeContainerMode = ({ classContainer, handleClick }: { classContainer: string, handleClick: TypeHandleClik }) => ReactElement
 
 export const ContainerMode: TypeContainerMode = ({ classContainer, handleClick }) => {
-	const textSettings = useContext(TextContext);
+	const textSettings = useAppSelector(state => state.textSettings);
 
 	return (
 		<div className={classContainer}>

@@ -1,4 +1,4 @@
-import { IContents, IControllerInput, IControllerText, IDataChart, IResultTest, ITextSettings, ITimer, ITimerTyping, ITransfer, Iwords } from "../Types/interface"
+import { IAdaptiveSettings, IContents, IControllerInput, IControllerText, IDataChart, IfocusSettings, IResultTest, ITextSettings, ITimer, ITimerTyping, ITransfer, Iwords } from "../Types/interface"
 
 export let words: Iwords = {
     finish: 0,
@@ -73,6 +73,19 @@ export const dataChart: IDataChart[] = [
 export let durationTime: ITimer = {
 	minute: 0,
 	second: 0
+}
+
+export const defaultFocusSettings: IfocusSettings = {
+	activeTest: false,
+	activeModalSearch: false,
+	activeModalLength: false,
+	activeModalSideBar: false,
+	activeCaretka: true
+}
+
+export const defaultAdaptiveSettings: IAdaptiveSettings = {
+	isPad: window.innerWidth <= 970,
+	isMobile: window.innerWidth <= 760,
 }
 
 export const massivLength: number[] = [10, 25, 50, 100];

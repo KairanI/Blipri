@@ -1,1 +1,0 @@
-export { AdaptiveReducer } from "./model";

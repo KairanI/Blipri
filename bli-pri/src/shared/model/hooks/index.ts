@@ -1,1 +1,0 @@
-export { useAnimate } from "./useAnimate";

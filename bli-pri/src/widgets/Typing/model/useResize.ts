@@ -1,11 +1,12 @@
 import { controllerText, transfer } from "../../../shared/lib/constant";
-import { useContext, useEffect } from "react";
-import { AdaptiveDispatchContext } from "../../../app/model/Context";
+import { useEffect } from "react";
 import { TypeUseResize } from "../lib/config";
 import { adaptiveLength } from "./adaptivLength";
+import { useActions } from '../../../shared/hooks/useActions'
 
 export const useResize: TypeUseResize = ({ setType, setPosition }) => {
-	const adaptiveDispatch = useContext(AdaptiveDispatchContext);
+  const { editIsPad, editIsMobile } = useActions();
+
 	useEffect(() => {
     const wordsCount: HTMLElement | null = document.getElementById('wordsCount');
     
@@ -18,10 +19,8 @@ export const useResize: TypeUseResize = ({ setType, setPosition }) => {
     transfer.length = Math.floor(testTextTimeout!.clientWidth / 19);
 
 		const handleResize = () => {
-			if (adaptiveDispatch) {
-				adaptiveDispatch({type: 'IsPadEdit', boolean: window.innerWidth <= 970})
-      	adaptiveDispatch({type: 'IsMobileEdit', boolean: window.innerWidth <= 760})
-			}
+      editIsPad(window.innerWidth <= 970)
+      editIsMobile(window.innerWidth <= 760)
 
       setTimeout(() => {
         const testTextTimeout: HTMLElement | null = document.getElementById('test-text');

@@ -1,8 +1,8 @@
-import { FC, useContext } from "react";
-import { TextContext } from "../../../app/model/Context";
+import { FC } from "react";
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 
 export const HotKeysTest: FC = () => {
-	const textSettings = useContext(TextContext);
+	const textSettings = useAppSelector(state => state.textSettings);
 
 	return (
 		<div className={textSettings?.mode == 'dictation' ? 'w-[290px] h-[66px] m-auto text-hotKeys font-inter-medium flex flex-col gap-[20px] text-mm opacity-100 transition-all' : 'w-[290px] h-[66px] m-auto text-hotKeys font-inter-medium flex flex-col gap-[20px] text-mm opacity-0 transition-all'}>

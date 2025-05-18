@@ -1,11 +1,11 @@
-import { useContext } from "react";
 import { TypeSideBarMobileComponent } from "../../shared/Types/types";
-import { FocusDispatchContext, TextContext } from "../../app/model/Context";
 import { controllerInput, massivLength } from "../../shared/lib/constant";
+import { useAppSelector } from '../../shared/hooks/useAppSelector'
+import { useActions } from '../../shared/hooks/useActions'
 
 export const SideBarWindow: TypeSideBarMobileComponent = ({ handleClick, handlePopUp }) => {
-	const textSettings = useContext(TextContext);
-	const dispatchFocus = useContext(FocusDispatchContext);
+	const textSettings = useAppSelector(state => state.textSettings);
+	const { editLengthModal } = useActions();
 	
 	return (
 		<div 
@@ -68,7 +68,7 @@ export const SideBarWindow: TypeSideBarMobileComponent = ({ handleClick, handleP
 						<div 
 							className={`w-[231px] h-[40px] rounded-[5px] bg-block-black text-[16px] flex-center-center tracking-[1px] ${textSettings?.lengthText && massivLength.includes(textSettings.lengthText) && textSettings?.lengthText <= 100 ? 'text-white' : 'bg-yellow-button text-black'}`}
 							onClick={() => {
-								if (dispatchFocus) dispatchFocus({ type: 'LengthModalEdit', boolean: true });
+								editLengthModal(true)
 								if (handlePopUp) handlePopUp('SideBarModalEdit', { boolean: false });
 
 								setTimeout(() => {

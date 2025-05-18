@@ -1,5 +1,4 @@
-import { FC, useCallback, useContext, useEffect } from "react"
-import { AdaptiveContext, FocusContext, FocusDispatchContext, TextContext } from "../../../app/model/Context"
+import { FC, useCallback, useEffect } from "react"
 import { useMouse } from "../model/useMouse"
 import { Typing } from "../../../widgets/Typing"
 import { HighElements } from "./HighElemts"
@@ -8,18 +7,20 @@ import { HotKeysTest } from "../../../entities/hotkeys/hotkeysTest"
 import { SideBar } from "../../../widgets/sideBar"
 import { WindowLength } from "../../../widgets/Window-length"
 import '../../../index.css'
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
+import { useActions } from '../../../shared/hooks/useActions'
 
 
 export const PageTest: FC = () => {
-	const focusSettings = useContext(FocusContext);
-	const adaptiveSettings = useContext(AdaptiveContext);
-	const textSettings = useContext(TextContext);
-	const focusDispatch = useContext(FocusDispatchContext);
+	const focusSettings = useAppSelector(state => state.focusSettings);
+	const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);	
+	const textSettings = useAppSelector(state => state.textSettings);
+	const { editTest, editCaretka } = useActions();
 
 	const callback = useCallback(() => {
-		if (focusSettings?.activeTest == true && focusDispatch) {
-			focusDispatch({ type: 'TestEdit', boolean: false });
-			focusDispatch({ type: 'CaretkaEdit', boolean: true });
+		if (focusSettings?.activeTest == true) {
+			editTest(false),
+			editCaretka(true)
 		}
 	}, [focusSettings?.activeTest])
 	const mouseMove = useMouse(callback, 1000);

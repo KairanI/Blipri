@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { AdaptiveContext, FocusDispatchContext, TextContext } from "../../../app/model/Context";
+import { useEffect, useRef, useState } from "react";
 import { useImmer } from "use-immer";
 import { controllers, interval, TypeAudioPlayer } from "../lib/constants";
 import { arrowDown } from "../mode/arrowDown";
@@ -9,11 +8,13 @@ import { AudioLine } from "./AudioComponents/AudioLine";
 import { AudioInput } from "./AudioComponents/AudioInput";
 import { ITimer } from "../../../shared/Types/interface";
 import { PlayStopButton } from "./AudioComponents/PlayStopButton";
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
+import { useActions } from '../../../shared/hooks/useActions'
 
 export const AudioPlayer: TypeAudioPlayer = ({ className }) => {
-	const textSettings = useContext(TextContext);
-	const adaptiveSettings = useContext(AdaptiveContext);
-	const dispatchFocus = useContext(FocusDispatchContext);
+	const textSettings = useAppSelector(state => state.textSettings);
+	const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);
+	const { editTest } = useActions();
 	const [play, setPlay] = useState<boolean>(false);
 	const [timer, setTimer] = useImmer<ITimer>({ minute: 0, second: 0 });
 	const inputAudioRef = useRef<HTMLInputElement>(null);
@@ -30,14 +31,14 @@ export const AudioPlayer: TypeAudioPlayer = ({ className }) => {
 			arrowDown({ stateArrow: e.key, range: inputAudioRef.current, audio: audioRef.current });
 
 			if (e.shiftKey && e.key == ' ') {
-				if (!play && dispatchFocus) {
+				if (!play) {
 					if (audioRef.current?.duration == audioRef.current?.currentTime) {
 						audioRef.current!.currentTime = 0;
 						inputAudioRef.current!.value = "0";
 						inputAudioRef.current!.style.background = `linear-gradient(to right, #FFFFFF ${0}%, #292929 ${0}%)`;
 					}
 					setPlay(true);
-					dispatchFocus({ type: 'TestEdit', boolean: true });
+					editTest(true);
 					interval.timeout = setTimeout(() => handleClickPlay({ range: inputAudioRef.current, audio: audioRef.current, setPlay, setTimer }), 2000);
 				}
 

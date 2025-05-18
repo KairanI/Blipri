@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
 import { controllers, interval, TypePlayerComponents } from "../../lib/constants"
 import { handleClickPlay } from "../../mode/handleClickPlay";
 import { SvgPlayButton } from "./svgPlayButton";
-import { AdaptiveContext } from "../../../../app/model/Context";
 
 export const PlayStopButton: TypePlayerComponents = ({ play, range, audio, setPlay, setTimer }) => {
-	const adaptiveSettings = useContext(AdaptiveContext);
+	const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);
+
 	return (
 		<>
 			{play ? (

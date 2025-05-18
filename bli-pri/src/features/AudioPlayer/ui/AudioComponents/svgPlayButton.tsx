@@ -1,8 +1,9 @@
-import { FC, useContext } from "react"
-import { AdaptiveContext } from "../../../../app/model/Context"
+import { FC } from "react"
+import { useAppSelector } from '../../../../shared/hooks/useAppSelector'
 
 export const SvgPlayButton: FC = () => {
-	const adaptiveSettings = useContext(AdaptiveContext);
+	const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);
+
 	return (
 		<>
 			{adaptiveSettings?.isPad && !adaptiveSettings.isMobile && (

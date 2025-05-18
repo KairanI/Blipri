@@ -1,10 +1,10 @@
-import { FC, useContext, useEffect, useRef } from "react";
-import { FocusContext } from "../../../pages/Test";
+import { FC, useEffect, useRef } from "react";
 import { useType } from "../model/useType";
 import { WordsCount } from "../../../entities/WordsCount";
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 
 export const Typing: FC = () => {
-	const focusSettings = useContext(FocusContext);
+	const focusSettings = useAppSelector(state => state.focusSettings);
 	const caretkaRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [type] = useType();

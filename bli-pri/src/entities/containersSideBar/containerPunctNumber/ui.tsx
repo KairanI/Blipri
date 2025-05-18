@@ -1,11 +1,11 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement } from "react";
 import { TypeHandleClik } from "../../../shared/Types/types";
-import { TextContext } from "../../../app/model/Context";
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
 
 type TypeContainerPunctNumber = ({ classContainer, classNumber, handleClick }: { classContainer: string, classNumber: string, handleClick: TypeHandleClik }) => ReactElement
 
 export const ContainerPunctNumber: TypeContainerPunctNumber = ({ classContainer, classNumber, handleClick }) => {
-	const textSettings = useContext(TextContext);
+	const textSettings = useAppSelector(state => state.textSettings);
 
 	return (
 		<div className={classContainer}>

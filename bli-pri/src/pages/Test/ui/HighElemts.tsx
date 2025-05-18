@@ -1,14 +1,15 @@
-import { FC, useContext } from "react"
+import { FC } from "react"
 import { WindowLanguage } from "../../../widgets/Window-language"
-import { AdaptiveContext, FocusContext, TextContext, TextDispatchContext } from "../../../app/model/Context"
 import { calculationWPM } from "../../../features/calculationWPM";
 import { words } from "../../../shared/lib/constant";
+import { useAppSelector } from '../../../shared/hooks/useAppSelector'
+import { useActions } from '../../../shared/hooks/useActions'
 
 export const HighElements: FC = () => {
-	const textDispatch = useContext(TextDispatchContext);
-	const textSettings = useContext(TextContext);
-	const focusSettings = useContext(FocusContext);
-	const adaptiveSettings = useContext(AdaptiveContext);
+	const { editPage } = useActions();
+	const textSettings = useAppSelector(state => state.textSettings);
+	const focusSettings = useAppSelector(state => state.focusSettings);
+  const adaptiveSettings = useAppSelector(state => state.adaptiveSettings);
 
 	return (
 		<div id="container-language" className={focusSettings?.activeTest ? `${adaptiveSettings?.isMobile && textSettings?.mode == 'zen' ? '' : 'opacity-0 transition-all select-none'}` : 'transition-all select-none'}>
@@ -18,7 +19,7 @@ export const HighElements: FC = () => {
 					onClick={() => {
 						if (adaptiveSettings?.isMobile) {
 							calculationWPM('all');
-							if (textDispatch) textDispatch({ type: 'PageEdit', string: 'Result' });
+							editPage('Result')
 							words.end = words.finish;
 						}
 					}}
